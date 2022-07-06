@@ -1,0 +1,169 @@
+enum Status {
+  ACTIVE
+  COMPLETE
+  CANCELLED
+}
+
+enum Currency {
+  ROBODOGE
+  BNB
+}
+
+enum TransferType {
+  MINT
+  TRANSFER
+  SALE
+  AUCTION
+}
+
+type TransferLog @entity {
+  id: ID!
+  nft: Nft!
+  type: TransferType!
+  from: Bytes!
+  to: Bytes!
+  price: BigInt
+  currency: Currency
+  timestamp: BigInt!
+}
+
+type Bid @entity {
+  id: ID!
+  auction: Auction!
+  bidder: Bytes!
+  amount: BigInt!
+}
+
+type Auction @entity {
+  id: ID!
+  hidden: Boolean!
+  status: Status!
+  nft: Nft!
+  originalOwner: Bytes!
+  startingBid: BigInt!
+  startingTime: BigInt!
+  endTime: BigInt!
+  duration: BigInt!
+  bidHistory: [Bid!] @derivedFrom(field: "auction")
+  highestBidder: Bytes
+  highestBid: BigInt
+  nextAllowedBid: BigInt!
+  currency: Currency!
+}
+
+type Sale @entity {
+  id: ID!
+  hidden: Boolean!
+  status: Status!
+  nft: Nft!
+  originalOwner: Bytes!
+  newOwner: Bytes
+  price: BigInt!
+  currency: Currency!
+}
+
+type Nft @entity {
+  id: ID!
+  hidden: Boolean!
+  contract: Bytes!
+  tokenId: BigInt!
+  owner: Bytes!
+  metadata: String!
+  auctions: [Auction!] @derivedFrom(field: "nft")
+  sales: [Sale!] @derivedFrom(field: "nft")
+  history: [TransferLog!] @derivedFrom(field: "nft")
+}
+
+# -------------- Staking NFT Marketplace ------------------
+
+type StakingTransferLog @entity {
+  id: ID!
+  nft: StakingNft!
+  type: TransferType!
+  from: Bytes!
+  to: Bytes!
+  price: BigInt
+  currency: Currency
+  timestamp: BigInt!
+}
+
+type StakingBid @entity {
+  id: ID!
+  auction: StakingAuction!
+  bidder: Bytes!
+  amount: BigInt!
+}
+
+type StakingAuction @entity {
+  id: ID!
+  status: Status!
+  nft: StakingNft!
+  originalOwner: Bytes!
+  startingBid: BigInt!
+  startingTime: BigInt!
+  endTime: BigInt!
+  duration: BigInt!
+  bidHistory: [StakingBid!] @derivedFrom(field: "auction")
+  highestBidder: Bytes
+  highestBid: BigInt
+  nextAllowedBid: BigInt!
+  currency: Currency!
+}
+
+type StakingSale @entity {
+  id: ID!
+  status: Status!
+  nft: StakingNft!
+  originalOwner: Bytes!
+  newOwner: Bytes
+  price: BigInt!
+  currency: Currency!
+}
+
+type StakingNft @entity {
+  id: ID!
+  contract: Bytes!
+  tokenId: BigInt!
+  owner: Bytes!
+  metadata: String!
+  auctions: [StakingAuction!] @derivedFrom(field: "nft")
+  sales: [StakingSale!] @derivedFrom(field: "nft")
+  history: [StakingTransferLog!] @derivedFrom(field: "nft")
+}
+
+# -------------- TA University ------------------
+
+# type Tutorial @entity {
+#   id: ID!
+#   active: Boolean!
+#   metadata: String!
+#   price: BigInt!
+#   currency: Currency!
+#   soldCount: BigInt!
+# }
+
+# type UserTutorials @entity {
+#   id: ID!
+#   tutorials: [Tutorial!]
+# }
+
+type Tutorial @entity {
+  id: ID!
+  active: Boolean!
+  metadata: String!
+  price: BigInt!
+  currency: Currency!
+  soldCount: BigInt!
+  users: [UserTutorials!] @derivedFrom(field: "tutorial")
+}
+
+type User @entity {
+  id: ID!
+  tutorials: [UserTutorials!] @derivedFrom(field: "user")
+}
+
+type UserTutorials @entity {
+  id: ID!
+  user: User!
+  tutorial: Tutorial!
+}

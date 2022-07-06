@@ -1,0 +1,166 @@
+specVersion: 0.0.2
+schema:
+  file: schema.graphql
+dataSources:
+  - kind: ethereum/contract
+    name: RadiusNft
+    network: bsc
+    source:
+      address: "0x75f3C42d5D0f33aeA8BA6AEA9C44743D4d743aaB"
+      abi: RadiusNft
+      startBlock: 12535831
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Nft
+      abis:
+        - name: RadiusNft
+          file: RadiusNft\abis\RadiusNft.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: RadiusNft\RadiusNft.wasm
+  - kind: ethereum/contract
+    name: RadiusMarketplace
+    network: bsc
+    source:
+      address: "0x78b0c8F83A50b111C21A68761c67738F69B2Ef8e"
+      abi: RadiusMarketplace
+      startBlock: 12535899
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Auction
+        - Sale
+        - Bid
+      abis:
+        - name: RadiusMarketplace
+          file: RadiusMarketplace\abis\RadiusMarketplace.json
+      eventHandlers:
+        - event: AuctionCancel(indexed uint256,indexed uint256)
+          handler: handleAuctionCancel
+        - event: AuctionStart(indexed uint256,indexed uint256,uint256,uint256,uint256,uint8)
+          handler: handleAuctionStart
+        - event: PlaceBid(indexed uint256,indexed uint256,uint256)
+          handler: handlePlaceBid
+        - event: AuctionEnd(indexed uint256,indexed uint256,address,uint256)
+          handler: handleAuctionEnd
+        - event: NFTPutOnSale(indexed uint256,indexed uint256,uint256,uint8)
+          handler: handleNFTPutOnSale
+        - event: NFTRemovedFromSale(indexed uint256,indexed uint256)
+          handler: handleNFTRemovedFromSale
+        - event: NFTSalePriceUpdated(indexed uint256,uint256,uint256,uint8)
+          handler: handleNFTSalePriceUpdated
+        - event: NFTSold(indexed uint256,indexed uint256,uint256,uint8)
+          handler: handleNFTSold
+      file: RadiusMarketplace\RadiusMarketplace.wasm
+  - kind: ethereum/contract
+    name: RadiusStakingNft
+    network: bsc
+    source:
+      address: "0x770ADae4b32E6ED0932d05436837723216033FaC"
+      abi: RadiusStakingNft
+      startBlock: 11709734
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - StakingNft
+      abis:
+        - name: RadiusStakingNft
+          file: RadiusStakingNft\abis\RadiusStakingNft.json
+      eventHandlers:
+        - event: Transfer(indexed address,indexed address,indexed uint256)
+          handler: handleTransfer
+      file: RadiusStakingNft\RadiusStakingNft.wasm
+  - kind: ethereum/contract
+    name: RadiusStakingMarketplace
+    network: bsc
+    source:
+      address: "0xC979273465FD2906a529b0e801C148eAc33926dF"
+      abi: RadiusStakingMarketplace
+      startBlock: 12535945
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - StakingAuction
+        - StakingSale
+        - StakingBid
+      abis:
+        - name: RadiusStakingMarketplace
+          file: RadiusStakingMarketplace\abis\RadiusStakingMarketplace.json
+      eventHandlers:
+        - event: AuctionCancel(indexed uint256,indexed uint256)
+          handler: handleAuctionCancel
+        - event: AuctionStart(indexed uint256,indexed uint256,uint256,uint256,uint256,uint8)
+          handler: handleAuctionStart
+        - event: PlaceBid(indexed uint256,indexed uint256,uint256)
+          handler: handlePlaceBid
+        - event: AuctionEnd(indexed uint256,indexed uint256,address,uint256)
+          handler: handleAuctionEnd
+        - event: NFTPutOnSale(indexed uint256,indexed uint256,uint256,uint8)
+          handler: handleNFTPutOnSale
+        - event: NFTRemovedFromSale(indexed uint256,indexed uint256)
+          handler: handleNFTRemovedFromSale
+        - event: NFTSalePriceUpdated(indexed uint256,uint256,uint256,uint8)
+          handler: handleNFTSalePriceUpdated
+        - event: NFTSold(indexed uint256,indexed uint256,uint256,uint8)
+          handler: handleNFTSold
+      file: RadiusStakingMarketplace\RadiusStakingMarketplace.wasm
+  - kind: ethereum/contract
+    name: RadiusItemRemover
+    network: bsc
+    source:
+      address: "0x33761d751AAD7117Bd982C0B7F81e14EC331b55f"
+      abi: RadiusItemRemover
+      startBlock: 12722345
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - Auction
+        - Sale
+        - Nft
+      abis:
+        - name: RadiusItemRemover
+          file: RadiusItemRemover\abis\RadiusItemRemover.json
+      eventHandlers:
+        - event: RemoveNft(uint256)
+          handler: handleRemoveNft
+      file: RadiusItemRemover\RadiusItemRemover.wasm
+  - kind: ethereum/contract
+    name: RadiusTAUniversity
+    network: bsc
+    source:
+      address: "0xf86aecf1c068e01fd055e958bee8fc92c069ad63"
+      abi: RadiusTAUniversity
+      startBlock: 12892726
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.5
+      language: wasm/assemblyscript
+      entities:
+        - User
+        - Tutorial
+        - UserTutorials
+      abis:
+        - name: RadiusTAUniversity
+          file: RadiusTAUniversity\abis\RadiusTAUniversity.json
+      eventHandlers:
+        - event: ItemAdded(uint256,string,uint256,uint8)
+          handler: handleItemAdded
+        - event: ItemUpdated(uint256,uint256,uint8)
+          handler: handleItemUpdated
+        - event: ItemRemoved(uint256)
+          handler: handleItemRemoved
+        - event: ItemBought(uint256)
+          handler: handleItemBought
+      file: RadiusTAUniversity\RadiusTAUniversity.wasm

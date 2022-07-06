@@ -1,0 +1,17 @@
+{
+  "name": "robodoge-marketplace",
+  "license": "UNLICENSED",
+  "scripts": {
+    "all": "graph codegen && graph build && graph deploy --node https://api.thegraph.com/deploy/ dhruv-rapid/robodoge-marketplace",
+    "codegen": "graph codegen",
+    "build": "graph build",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ dhruv-rapid/robodoge-marketplace",
+    "create-local": "graph create --node http://localhost:8020/ dhruv-rapid/robodoge-marketplace",
+    "remove-local": "graph remove --node http://localhost:8020/ dhruv-rapid/robodoge-marketplace",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dhruv-rapid/robodoge-marketplace"
+  },
+  "dependencies": {
+    "@graphprotocol/graph-cli": "0.22.1",
+    "@graphprotocol/graph-ts": "^0.22.1"
+  }
+}
