@@ -338,44 +338,6 @@ export class RadiusMarketplace extends ethereum.SmartContract {
     return new RadiusMarketplace("RadiusMarketplace", address);
   }
 
-  MAX_AUCTION_DURATION(): BigInt {
-    let result = super.call(
-      "MAX_AUCTION_DURATION",
-      "MAX_AUCTION_DURATION():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_MAX_AUCTION_DURATION(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "MAX_AUCTION_DURATION",
-      "MAX_AUCTION_DURATION():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
-  MIN_BID_RISE(): BigInt {
-    let result = super.call("MIN_BID_RISE", "MIN_BID_RISE():(uint256)", []);
-
-    return result[0].toBigInt();
-  }
-
-  try_MIN_BID_RISE(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall("MIN_BID_RISE", "MIN_BID_RISE():(uint256)", []);
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   auctionCounter(): BigInt {
     let result = super.call("auctionCounter", "auctionCounter():(uint256)", []);
 
@@ -463,29 +425,6 @@ export class RadiusMarketplace extends ethereum.SmartContract {
     );
   }
 
-  bnbRoyaltyReceived(): BigInt {
-    let result = super.call(
-      "bnbRoyaltyReceived",
-      "bnbRoyaltyReceived():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_bnbRoyaltyReceived(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "bnbRoyaltyReceived",
-      "bnbRoyaltyReceived():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   canClaimAuctionNft(_address: Address, _tokenId: BigInt): boolean {
     let result = super.call(
       "canClaimAuctionNft",
@@ -535,6 +474,44 @@ export class RadiusMarketplace extends ethereum.SmartContract {
     }
     let value = result.value;
     return ethereum.CallResult.fromValue(value[0].toBoolean());
+  }
+
+  maxAuctionDuration(): BigInt {
+    let result = super.call(
+      "maxAuctionDuration",
+      "maxAuctionDuration():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_maxAuctionDuration(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "maxAuctionDuration",
+      "maxAuctionDuration():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  minBidRise(): BigInt {
+    let result = super.call("minBidRise", "minBidRise():(uint256)", []);
+
+    return result[0].toBigInt();
+  }
+
+  try_minBidRise(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall("minBidRise", "minBidRise():(uint256)", []);
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
   }
 
   minTokenBalance(): BigInt {
@@ -589,6 +566,29 @@ export class RadiusMarketplace extends ethereum.SmartContract {
     let result = super.tryCall(
       "mintFeeReceived",
       "mintFeeReceived():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  nativeRoyaltyReceived(): BigInt {
+    let result = super.call(
+      "nativeRoyaltyReceived",
+      "nativeRoyaltyReceived():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_nativeRoyaltyReceived(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "nativeRoyaltyReceived",
+      "nativeRoyaltyReceived():(uint256)",
       []
     );
     if (result.reverted) {

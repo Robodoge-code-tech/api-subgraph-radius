@@ -463,29 +463,6 @@ export class RadiusStakingMarketplace extends ethereum.SmartContract {
     );
   }
 
-  bnbRoyaltyReceived(): BigInt {
-    let result = super.call(
-      "bnbRoyaltyReceived",
-      "bnbRoyaltyReceived():(uint256)",
-      []
-    );
-
-    return result[0].toBigInt();
-  }
-
-  try_bnbRoyaltyReceived(): ethereum.CallResult<BigInt> {
-    let result = super.tryCall(
-      "bnbRoyaltyReceived",
-      "bnbRoyaltyReceived():(uint256)",
-      []
-    );
-    if (result.reverted) {
-      return new ethereum.CallResult();
-    }
-    let value = result.value;
-    return ethereum.CallResult.fromValue(value[0].toBigInt());
-  }
-
   canClaimAuctionNft(_address: Address, _tokenId: BigInt): boolean {
     let result = super.call(
       "canClaimAuctionNft",
@@ -551,6 +528,29 @@ export class RadiusStakingMarketplace extends ethereum.SmartContract {
     let result = super.tryCall(
       "minTokenBalance",
       "minTokenBalance():(uint256)",
+      []
+    );
+    if (result.reverted) {
+      return new ethereum.CallResult();
+    }
+    let value = result.value;
+    return ethereum.CallResult.fromValue(value[0].toBigInt());
+  }
+
+  nativeRoyaltyReceived(): BigInt {
+    let result = super.call(
+      "nativeRoyaltyReceived",
+      "nativeRoyaltyReceived():(uint256)",
+      []
+    );
+
+    return result[0].toBigInt();
+  }
+
+  try_nativeRoyaltyReceived(): ethereum.CallResult<BigInt> {
+    let result = super.tryCall(
+      "nativeRoyaltyReceived",
+      "nativeRoyaltyReceived():(uint256)",
       []
     );
     if (result.reverted) {

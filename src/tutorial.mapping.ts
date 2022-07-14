@@ -15,7 +15,7 @@ export function handleItemAdded(event: ItemAdded): void {
   tutorial.metadata = event.params.metadata;
   tutorial.price = event.params.price;
   tutorial.currency =
-    event.params.currency.toString() === "0" ? "RADIUS" : "BNB";
+    event.params.currency.toString() === "0" ? "RADIUS" : "AVAX";
   tutorial.soldCount = BigInt.fromI32(0);
 
   tutorial.save();

@@ -1,14 +1,15 @@
 {
-  "name": "robodoge-marketplace",
+  "name": "radius-protocol-subgraph",
   "license": "UNLICENSED",
   "scripts": {
-    "all": "graph codegen && graph build && graph deploy --node https://api.thegraph.com/deploy/ dhruv-rapid/robodoge-marketplace",
-    "codegen": "graph codegen",
-    "build": "graph build",
-    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ dhruv-rapid/robodoge-marketplace",
-    "create-local": "graph create --node http://localhost:8020/ dhruv-rapid/robodoge-marketplace",
-    "remove-local": "graph remove --node http://localhost:8020/ dhruv-rapid/robodoge-marketplace",
-    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 dhruv-rapid/robodoge-marketplace"
+    "all": "graph codegen subgraph.yaml && graph build subgraph.yaml",
+    "codegen": "graph codegen subgraph.yaml",
+    "build": "graph build subgraph.yaml",
+    "deploy": "graph deploy --node https://api.thegraph.com/deploy/ --ipfs https://api.thegraph.com/ipfs/ nayan-shrivastava-ri/radius-protocol-subgraph subgraph.yaml --access-token",
+    "create-local": "graph create --node http://localhost:8020/ nayan-shrivastava-ri/radius-protocol-subgraph",
+    "remove-local": "graph remove --node http://localhost:8020/ nayan-shrivastava-ri/radius-protocol-subgraph",
+    "deploy-local": "graph deploy --node http://localhost:8020/ --ipfs http://localhost:5001 nayan-shrivastava-ri/radius-protocol-subgraph",
+    "auth": "graph auth --product hosted-service"
   },
   "dependencies": {
     "@graphprotocol/graph-cli": "0.22.1",

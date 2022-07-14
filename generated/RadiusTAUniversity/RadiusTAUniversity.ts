@@ -242,11 +242,11 @@ export class URI__Params {
 
 export class RadiusTAUniversity__itemsResult {
   value0: string;
-  value1: string;
-  value2: BigInt;
-  value3: i32;
+  value1: BigInt;
+  value2: i32;
+  value3: BigInt;
 
-  constructor(value0: string, value1: string, value2: BigInt, value3: i32) {
+  constructor(value0: string, value1: BigInt, value2: i32, value3: BigInt) {
     this.value0 = value0;
     this.value1 = value1;
     this.value2 = value2;
@@ -256,12 +256,12 @@ export class RadiusTAUniversity__itemsResult {
   toMap(): TypedMap<string, ethereum.Value> {
     let map = new TypedMap<string, ethereum.Value>();
     map.set("value0", ethereum.Value.fromString(this.value0));
-    map.set("value1", ethereum.Value.fromString(this.value1));
-    map.set("value2", ethereum.Value.fromUnsignedBigInt(this.value2));
+    map.set("value1", ethereum.Value.fromUnsignedBigInt(this.value1));
     map.set(
-      "value3",
-      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value3))
+      "value2",
+      ethereum.Value.fromUnsignedBigInt(BigInt.fromI32(this.value2))
     );
+    map.set("value3", ethereum.Value.fromUnsignedBigInt(this.value3));
     return map;
   }
 }
@@ -386,15 +386,15 @@ export class RadiusTAUniversity extends ethereum.SmartContract {
   items(param0: BigInt): RadiusTAUniversity__itemsResult {
     let result = super.call(
       "items",
-      "items(uint256):(string,string,uint256,uint8)",
+      "items(uint256):(string,uint256,uint8,uint256)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
 
     return new RadiusTAUniversity__itemsResult(
       result[0].toString(),
-      result[1].toString(),
-      result[2].toBigInt(),
-      result[3].toI32()
+      result[1].toBigInt(),
+      result[2].toI32(),
+      result[3].toBigInt()
     );
   }
 
@@ -403,7 +403,7 @@ export class RadiusTAUniversity extends ethereum.SmartContract {
   ): ethereum.CallResult<RadiusTAUniversity__itemsResult> {
     let result = super.tryCall(
       "items",
-      "items(uint256):(string,string,uint256,uint8)",
+      "items(uint256):(string,uint256,uint8,uint256)",
       [ethereum.Value.fromUnsignedBigInt(param0)]
     );
     if (result.reverted) {
@@ -413,9 +413,9 @@ export class RadiusTAUniversity extends ethereum.SmartContract {
     return ethereum.CallResult.fromValue(
       new RadiusTAUniversity__itemsResult(
         value[0].toString(),
-        value[1].toString(),
-        value[2].toBigInt(),
-        value[3].toI32()
+        value[1].toBigInt(),
+        value[2].toI32(),
+        value[3].toBigInt()
       )
     );
   }
@@ -571,20 +571,16 @@ export class AddItemCall__Inputs {
     this._call = call;
   }
 
-  get _hash(): string {
+  get _metadata(): string {
     return this._call.inputValues[0].value.toString();
   }
 
-  get _metadata(): string {
-    return this._call.inputValues[1].value.toString();
-  }
-
   get _price(): BigInt {
-    return this._call.inputValues[2].value.toBigInt();
+    return this._call.inputValues[1].value.toBigInt();
   }
 
   get _currency(): i32 {
-    return this._call.inputValues[3].value.toI32();
+    return this._call.inputValues[2].value.toI32();
   }
 }
 

@@ -63,7 +63,7 @@
       },
       {
         "indexed": false,
-        "internalType": "enum RoboDogeTAUniverisy.Currency",
+        "internalType": "enum RadiusTAUniverisy.Currency",
         "name": "currency",
         "type": "uint8"
       }
@@ -114,7 +114,7 @@
       },
       {
         "indexed": false,
-        "internalType": "enum RoboDogeTAUniverisy.Currency",
+        "internalType": "enum RadiusTAUniverisy.Currency",
         "name": "currency",
         "type": "uint8"
       }
@@ -238,11 +238,6 @@
     "inputs": [
       {
         "internalType": "string",
-        "name": "_hash",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
         "name": "_metadata",
         "type": "string"
       },
@@ -252,7 +247,7 @@
         "type": "uint256"
       },
       {
-        "internalType": "enum RoboDogeTAUniverisy.Currency",
+        "internalType": "enum RadiusTAUniverisy.Currency",
         "name": "_currency",
         "type": "uint8"
       }
@@ -378,11 +373,6 @@
     "outputs": [
       {
         "internalType": "string",
-        "name": "media",
-        "type": "string"
-      },
-      {
-        "internalType": "string",
         "name": "metadata",
         "type": "string"
       },
@@ -392,9 +382,14 @@
         "type": "uint256"
       },
       {
-        "internalType": "enum RoboDogeTAUniverisy.Currency",
+        "internalType": "enum RadiusTAUniverisy.Currency",
         "name": "currency",
         "type": "uint8"
+      },
+      {
+        "internalType": "uint256",
+        "name": "soldCount",
+        "type": "uint256"
       }
     ],
     "stateMutability": "view",
@@ -588,7 +583,7 @@
         "type": "uint256"
       },
       {
-        "internalType": "enum RoboDogeTAUniverisy.Currency",
+        "internalType": "enum RadiusTAUniverisy.Currency",
         "name": "_currency",
         "type": "uint8"
       }

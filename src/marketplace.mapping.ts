@@ -30,7 +30,7 @@ export function handleNFTPutOnSale(event: NFTPutOnSale): void {
   sale.nft = event.params.tokenId.toHex();
   sale.originalOwner = event.transaction.from;
   sale.price = event.params.price;
-  sale.currency = event.params.currency.toString() === "0" ? "RADIUS" : "BNB";
+  sale.currency = event.params.currency.toString() === "0" ? "RADIUS" : "AVAX";
 
   sale.save();
 }
@@ -42,7 +42,7 @@ export function handleNFTSalePriceUpdated(event: NFTSalePriceUpdated): void {
   if (!sale) return;
 
   sale.price = event.params.price;
-  sale.currency = event.params.currency.toString() === "0" ? "RADIUS" : "BNB";
+  sale.currency = event.params.currency.toString() === "0" ? "RADIUS" : "AVAX";
 
   sale.save();
 }
@@ -105,7 +105,7 @@ export function handleAuctionStart(event: AuctionStart): void {
     .plus(event.params.duration)
     .times(BigInt.fromI32(1000));
   auction.currency =
-    event.params.currency.toString() === "0" ? "RADIUS" : "BNB";
+    event.params.currency.toString() === "0" ? "RADIUS" : "AVAX";
 
   auction.save();
 }
@@ -123,7 +123,7 @@ export function handleAuctionCancel(event: AuctionCancel): void {
 
 export function handlePlaceBid(event: PlaceBid): void {
   const marketplaceContract = RadiusMarketplace.bind(event.address);
-  const minBidRise = marketplaceContract.MIN_BID_RISE();
+  const minBidRise = marketplaceContract.minBidRise();
 
   const id = event.params.auctionId.toHex();
   let auction = Auction.load(id);

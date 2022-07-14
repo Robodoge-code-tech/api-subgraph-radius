@@ -661,6 +661,44 @@ export class RadiusStakingNft extends ethereum.SmartContract {
   }
 }
 
+export class ConstructorCall extends ethereum.Call {
+  get inputs(): ConstructorCall__Inputs {
+    return new ConstructorCall__Inputs(this);
+  }
+
+  get outputs(): ConstructorCall__Outputs {
+    return new ConstructorCall__Outputs(this);
+  }
+}
+
+export class ConstructorCall__Inputs {
+  _call: ConstructorCall;
+
+  constructor(call: ConstructorCall) {
+    this._call = call;
+  }
+
+  get _name(): string {
+    return this._call.inputValues[0].value.toString();
+  }
+
+  get _symbol(): string {
+    return this._call.inputValues[1].value.toString();
+  }
+
+  get _staking(): Address {
+    return this._call.inputValues[2].value.toAddress();
+  }
+}
+
+export class ConstructorCall__Outputs {
+  _call: ConstructorCall;
+
+  constructor(call: ConstructorCall) {
+    this._call = call;
+  }
+}
+
 export class AddToCollectionCall extends ethereum.Call {
   get inputs(): AddToCollectionCall__Inputs {
     return new AddToCollectionCall__Inputs(this);
@@ -894,7 +932,7 @@ export class SafeTransferFrom1Call__Inputs {
     return this._call.inputValues[2].value.toBigInt();
   }
 
-  get _data(): Bytes {
+  get data(): Bytes {
     return this._call.inputValues[3].value.toBytes();
   }
 }
@@ -1129,44 +1167,6 @@ export class TransferOwnershipCall__Outputs {
   _call: TransferOwnershipCall;
 
   constructor(call: TransferOwnershipCall) {
-    this._call = call;
-  }
-}
-
-export class ConstructorCall extends ethereum.Call {
-  get inputs(): ConstructorCall__Inputs {
-    return new ConstructorCall__Inputs(this);
-  }
-
-  get outputs(): ConstructorCall__Outputs {
-    return new ConstructorCall__Outputs(this);
-  }
-}
-
-export class ConstructorCall__Inputs {
-  _call: ConstructorCall;
-
-  constructor(call: ConstructorCall) {
-    this._call = call;
-  }
-
-  get _name(): string {
-    return this._call.inputValues[0].value.toString();
-  }
-
-  get _symbol(): string {
-    return this._call.inputValues[1].value.toString();
-  }
-
-  get _staking(): Address {
-    return this._call.inputValues[2].value.toAddress();
-  }
-}
-
-export class ConstructorCall__Outputs {
-  _call: ConstructorCall;
-
-  constructor(call: ConstructorCall) {
     this._call = call;
   }
 }

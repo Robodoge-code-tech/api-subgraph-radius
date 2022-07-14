@@ -5,8 +5,8 @@ enum Status {
 }
 
 enum Currency {
-  ROBODOGE
-  BNB
+  RADIUS
+  AVAX
 }
 
 enum TransferType {

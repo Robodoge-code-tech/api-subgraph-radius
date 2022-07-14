@@ -6,9 +6,9 @@ dataSources:
     name: RadiusNft
     network: fuji
     source:
-      address: "0xD86D6299Cf86Ee2DE69f623c6AAa4216fc38a44C"
+      address: "0x8B9A176d0F00caF2F7E30697AfA50e49f6815D67"
       abi: RadiusNft
-      startBlock: 12535831
+      startBlock: 10594079
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -26,9 +26,9 @@ dataSources:
     name: RadiusMarketplace
     network: fuji
     source:
-      address: "0x4bd693862297c0f04DDbFF231726526E0b91B79c"
+      address: "0x2f47e455AAC0569163BbeD8A397e8780E31eF174"
       abi: RadiusMarketplace
-      startBlock: 12535899
+      startBlock: 10594281
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -64,7 +64,7 @@ dataSources:
     source:
       address: "0x9164d0fe5C594450755E6dDbdd600a800595a736"
       abi: RadiusStakingNft
-      startBlock: 11709734
+      startBlock: 10548430
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -84,7 +84,7 @@ dataSources:
     source:
       address: "0xD86D6299Cf86Ee2DE69f623c6AAa4216fc38a44C"
       abi: RadiusStakingMarketplace
-      startBlock: 12535945
+      startBlock: 10594079
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -120,7 +120,7 @@ dataSources:
     source:
       address: "0xD091B8A48f8B3DC7a64d1dabf88e93f92Db99D2E"
       abi: RadiusItemRemover
-      startBlock: 12722345
+      startBlock: 10594531
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
@@ -142,7 +142,7 @@ dataSources:
     source:
       address: "0xFD4811283935094F21692B697eE45c036b06092C"
       abi: RadiusTAUniversity
-      startBlock: 12892726
+      startBlock: 10594595
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.5
